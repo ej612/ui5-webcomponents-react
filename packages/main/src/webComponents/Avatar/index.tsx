@@ -35,7 +35,7 @@ interface AvatarAttributes {
    *
    * import "@ui5/webcomponents-icons/dist/{icon\_name}.js"
    *
-   * `<Avatar icon="employee">`
+   * <Avatar icon="employee">
    *
    * See all the available icons in the <ui5-link target="_blank" href="https://openui5.hana.ondemand.com/test-resources/sap/m/demokit/iconExplorer/webapp/index.html" class="api-table-content-cell-link">Icon Explorer</ui5-link>.
    */
@@ -78,9 +78,7 @@ export interface AvatarPropTypes extends AvatarAttributes, CommonProps {
   /**
    * Receives the desired `<img>` tag **Note:** If you experience flickering of the provided image, you can hide the component until it is being defined with the following CSS:
    *
-   * **Note:** If you experience flickering of the provided image, you can hide the component until it is being defined with the following CSS:
-   *
-   * `Avatar:not(:defined) {  visibility: hidden;   }   `
+   * `Avatar:not(:defined) {    visibility: hidden;   }   `
    */
   children?: ReactNode;
 }
@@ -99,5 +97,11 @@ const Avatar = withWebComponent<AvatarPropTypes, AvatarDomRef>(
 );
 
 Avatar.displayName = 'Avatar';
+
+Avatar.defaultProps = {
+  colorScheme: AvatarColorScheme.Accent6,
+  shape: AvatarShape.Circle,
+  size: AvatarSize.S
+};
 
 export { Avatar };

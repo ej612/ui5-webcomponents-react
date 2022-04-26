@@ -139,7 +139,7 @@ list item, providing the most common use cases such as <code>text</code>, <code>
 
 ## CustomListItem
 
-A component to be used as custom list item within the <code>List</code> the same way as the standard <code>StandardListItem</code>. The <code>CustomListItem</code> accepts arbitrary HTML content to allow full
+A component to be used as custom list item within the < code > List < /code> the same way as the standard <code>StandardListItem</code >. The < code > CustomListItem < /code> accepts arbitrary HTML content to allow full
 customization
 
 <Canvas>
@@ -151,7 +151,12 @@ customization
             <FlexBox justifyContent={FlexBoxJustifyContent.SpaceAround} style={{ width: '100%' }}>
               <Text style={{ fontWeight: 'bold' }}>FULLY</Text>
               <Text style={{ color: 'red' }}>CUSTOMIZABLE</Text>
-              <Text style={{ color: 'white', backgroundColor: ThemingParameters.sapButton_Emphasized_Background }}>
+              <Text
+                style={{
+                  color: 'white',
+                  backgroundColor: ThemingParameters.sapButton_Emphasized_Background
+                }}
+              >
                 CHILDREN
               </Text>
             </FlexBox>
@@ -169,7 +174,7 @@ customization
 
 ## GroupHeaderListItem
 
-The <code>GroupHeaderListItem</code> is a special list item, used only to separate other list items into logical groups
+The < code > GroupHeaderListItem < /code> is a special list item, used only to separate other list items into logical groups
 
 <Canvas>
   <Story name="with GroupHeaderListItem">

@@ -91,6 +91,14 @@ interface DateRangePickerAttributes {
 
 export interface DateRangePickerDomRef extends DateRangePickerAttributes, Ui5DomRef {
   /**
+   * **Note:** The getter method is inherited and not supported. If called it will return an empty value.
+   */
+  readonly dateValue: Date;
+  /**
+   * **Note:** The getter method is inherited and not supported. If called it will return an empty value.
+   */
+  readonly dateValueUTC: Date;
+  /**
    * Returns the end date of the currently selected range as JavaScript Date instance.
    */
   readonly endDateValue: Date;

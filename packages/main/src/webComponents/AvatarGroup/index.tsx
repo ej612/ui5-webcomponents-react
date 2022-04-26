@@ -1,6 +1,6 @@
 import '@ui5/webcomponents/dist/AvatarGroup.js';
 import { ReactNode } from 'react';
-import { AvatarColorScheme, AvatarGroupType } from '../../enums';
+import { AvatarGroupType } from '../../enums';
 import { CommonProps } from '../../interfaces/CommonProps';
 import { Ui5CustomEvent } from '../../interfaces/Ui5CustomEvent';
 import { Ui5DomRef } from '../../interfaces/Ui5DomRef';
@@ -22,7 +22,7 @@ export interface AvatarGroupDomRef extends AvatarGroupAttributes, Ui5DomRef {
   /**
    * Returns an array containing the `AvatarColorScheme` values that correspond to the avatars in the component.
    */
-  readonly colorScheme: (AvatarColorScheme | keyof typeof AvatarColorScheme)[];
+  readonly colorScheme: Array<AvatarColorScheme[] | keyof typeof AvatarColorScheme[]>;
   /**
    * Returns an array containing the `ui5-avatar` instances that are currently not displayed due to lack of space.
    */
@@ -48,7 +48,7 @@ export interface AvatarGroupPropTypes extends AvatarGroupAttributes, Omit<Common
   /**
    * Fired when the component is activated either with a click/tap or by using the Enter or Space key.
    */
-  onClick?: (event: Ui5CustomEvent<HTMLElement, { targetRef: ReactNode; overflowButtonClicked: boolean }>) => void;
+  onClick?: (event: Ui5CustomEvent<HTMLElement, { targetRef: HTMLElement; overflowButtonClicked: boolean }>) => void;
   /**
    * Fired when the count of visible `Avatar` elements in the component has changed
    */

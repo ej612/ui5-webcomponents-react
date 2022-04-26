@@ -115,11 +115,11 @@ export interface InputPropTypes extends InputAttributes, Omit<CommonProps, 'onCh
    *
    * **Note:** The suggestions would be displayed only if the `showSuggestions` property is set to `true`.
    *
-   * **Note:** The `<SuggestionItem>` and `<SuggestionGroupItem>` are recommended to be used as suggestion items.
+   * **Note:** The ``<SuggestionItem>`` and `<SuggestionGroupItem>` are recommended to be used as suggestion items.
    *
    * **Note:** Importing the Input Suggestions Support feature:
    * `import "@ui5/webcomponents/dist/features/InputSuggestions.js";`
-   * automatically imports the `<SuggestionItem>` and `<SuggestionGroupItem>` for your convenience.
+   * automatically imports the ``<SuggestionItem>`` and `<SuggestionGroupItem>` for your convenience.
    */
   children?: ReactNode | ReactNode[];
   /**
@@ -154,12 +154,12 @@ export interface InputPropTypes extends InputAttributes, Omit<CommonProps, 'onCh
    * Fired when the user navigates to a suggestion item via the ARROW keys, as a preview, before the final selection.
    */
   onSuggestionItemPreview?: (
-    event: Ui5CustomEvent<HTMLInputElement, { item: ReactNode; targetRef: ReactNode }>
+    event: Ui5CustomEvent<HTMLInputElement, { item: HTMLElement; targetRef: HTMLElement }>
   ) => void;
   /**
    * Fired when a suggestion item, that is displayed in the suggestion popup, is selected.
    */
-  onSuggestionItemSelect?: (event: Ui5CustomEvent<HTMLInputElement, { item: ReactNode }>) => void;
+  onSuggestionItemSelect?: (event: Ui5CustomEvent<HTMLInputElement, { item: HTMLElement }>) => void;
 }
 
 /**
