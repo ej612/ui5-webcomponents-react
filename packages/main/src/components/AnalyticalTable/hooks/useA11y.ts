@@ -8,6 +8,10 @@ interface UpdatedCellProptypes {
   'aria-label'?: string;
 }
 
+const getRowProps = (rowProps, { row }) => {
+  return [rowProps, { 'aria-rowindex': row.index + 1, 'aria-selected': row.isSelected }];
+};
+
 const getCellProps = (cellProps, { cell: { column, row, value }, instance }) => {
   const columnIndex = instance.visibleColumns.findIndex(({ id }) => id === column.id);
   const { alwaysShowSubComponent, renderRowSubComponent, translatableTexts, selectionMode, selectionBehavior } =
@@ -57,12 +61,14 @@ const getCellProps = (cellProps, { cell: { column, row, value }, instance }) => 
     cellProps,
     {
       ...updatedCellProps,
+      'aria-labelledby': `${column.id}-inner`,
       'aria-colindex': columnIndex + 1 // aria index is 1 based, not 0
     }
   ];
 };
 
 export const useA11y = (hooks) => {
+  hooks.getRowProps.push(getRowProps);
   hooks.getCellProps.push(getCellProps);
 };
 useA11y.pluginName = 'useA11y';

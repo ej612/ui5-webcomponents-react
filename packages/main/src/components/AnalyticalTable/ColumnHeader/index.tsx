@@ -207,6 +207,7 @@ export const ColumnHeader: FC<ColumnHeaderProps> = (props: ColumnHeaderProps) =>
           borderLeft: dragOver ? `3px solid ${ThemingParameters.sapSelectedColor}` : undefined
         }}
         aria-haspopup={hasPopover ? 'menu' : undefined}
+        aria-labelledby={`${id}-inner`}
         role={role}
         draggable={isDraggable}
         onDragEnter={onDragEnter}
@@ -219,7 +220,7 @@ export const ColumnHeader: FC<ColumnHeaderProps> = (props: ColumnHeaderProps) =>
         onKeyDown={handleHeaderCellKeyDown}
         onKeyUp={handleHeaderCellKeyUp}
       >
-        <div className={classes.header} data-h-align={column.hAlign}>
+        <div className={classes.header} data-h-align={column.hAlign} id={`${id}-inner`}>
           <Text
             title={tooltip}
             wrapping={false}
