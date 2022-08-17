@@ -11,6 +11,7 @@ import React, {
   useRef,
   useState
 } from 'react';
+import { FeatureFlags, getFeatureFlag } from '../config/featureFlags';
 import { CommonProps } from '../interfaces/CommonProps';
 import { Ui5DomRef } from '../interfaces/Ui5DomRef';
 
@@ -107,11 +108,32 @@ export const withWebComponent = <Props extends Record<string, any>, RefType = Ui
       }
       return [...acc, ...slottedChildren];
     }, []);
+
     // event binding
     useEffect(() => {
       if (!waitForDefine || isDefined) {
-        eventProperties.forEach((eventName) => {
-          const eventHandler = rest[createEventPropName(eventName)] as EventHandler;
+        let eventList = eventProperties;
+        let replaceOnChangeWithOnInput = false;
+        if (getFeatureFlag(FeatureFlags.Events_OnChangeLiveUpdate) && eventProperties.includes('input')) {
+          // we can only map to `onInput` if the component supports it
+          const hasOnChange = typeof rest[createEventPropName('change')] === 'function';
+          const hasOnInput = typeof rest[createEventPropName('input')] === 'function';
+          // both given, ignore onChange and use onInput
+          if (hasOnChange && hasOnInput) {
+            console.warn(
+              `You passed both 'onChange' and 'onInput' while having the feature flag 'Events_OnChangeLiveUpdate' active.`,
+              `This will ignore the 'onInput' prop.`
+            );
+            eventList = eventProperties.filter((eventName) => eventName !== 'input');
+          }
+          replaceOnChangeWithOnInput = hasOnChange;
+        }
+        eventList.forEach((eventName) => {
+          let finalEventName = eventName;
+          if (replaceOnChangeWithOnInput && eventName === 'change') {
+            finalEventName = 'input';
+          }
+          const eventHandler = rest[createEventPropName(finalEventName)] as EventHandler;
           if (typeof eventHandler === 'function') {
             eventRegistry.current[eventName] = eventHandler;
             ref.current?.addEventListener(eventName, eventRegistry.current[eventName]);

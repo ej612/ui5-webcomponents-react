@@ -1,4 +1,5 @@
 import { render, fireEvent, screen } from '@shared/tests';
+import { Input } from '../webComponents';
 import { Button } from '../webComponents/Button';
 import { Dialog } from '../webComponents/Dialog';
 import { Bar } from '../webComponents/Bar';
@@ -7,7 +8,8 @@ import {
   setCustomElementsScopingRules
 } from '@ui5/webcomponents-base/dist/CustomElementsScope.js';
 import React from 'react';
-
+import userEvent from '@testing-library/user-event';
+F;
 describe('withWebComponent', () => {
   test('Unmount Event Handlers correctly after prop update', () => {
     const callback = jest.fn();
